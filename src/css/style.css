@@ -1,0 +1,45 @@
+body {
+    background-color: #fffcda;
+}
+
+#board {
+    position: absolute;
+    top: calc(50% - 40vmin);
+    left: calc(50% - 40vmin);
+    width: 80vmin;
+    height: 80vmin;
+    border: 12px black solid;
+}
+
+.tile {
+    float: left;
+    width: calc(100%/8);
+    height: calc(100%/8);
+    padding: 0;
+}
+
+.tile.black {
+    background-color: #161825;
+}
+
+.tile.white {
+    background-color: #fff7b2;
+}
+
+.piece {
+    display: block;
+    position: absolute;
+    width: calc((100%/8) - 5vmin);
+    height: calc((100%/8) - 5vmin);
+    margin-top: 2.4vmin;
+    margin-left: 2.4vmin;
+    border-radius: 10vmin;
+}
+
+.piece.player1 {
+    background-color: #d9e3d6;
+}
+
+.piece.player2 {
+    background-color: #d14841;
+}
