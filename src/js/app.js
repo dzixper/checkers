@@ -124,7 +124,6 @@ function movePossible() {
             (pieceRow-2 < 0 || pieceColumn+2 > 7 || board[pieceRow-1][pieceColumn+1] !== otherPlayer() || board[pieceRow-2][pieceColumn+2] !== 0) &&
             (pieceRow+2 > 7 || pieceColumn-2 < 0 || board[pieceRow+1][pieceColumn-1] !== otherPlayer() || board[pieceRow+2][pieceColumn-2] !== 0) &&
             (pieceRow+2 > 7 || pieceColumn+2 > 7 || board[pieceRow+1][pieceColumn+1] !== otherPlayer() || board[pieceRow+2][pieceColumn+2] !== 0)) {
-            console.log(board[pieceRow-1][pieceColumn+1]);
             swapPlayer();
         }
 
