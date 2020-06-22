@@ -1,23 +1,35 @@
 'use strict';
 
-let board = [
-    [0, 2, 0, 2, 0, 2, 0, 2],   //2 = player2
-    [2, 0, 2, 0, 2, 0, 2, 0],
-    [0, 2, 0, 2, 0, 2, 0, 2],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 1, 0, 1, 0, 1, 0],
-    [0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 0, 1, 0, 1, 0]    //1 = player1
-];
+let board,
+    pieceChecked,
+    pieceColumn,
+    pieceRow,
+    tileColumn,
+    tileRow,
+    playerTurn,
+    battleMode;
 
-let pieceChecked = false,
-    pieceColumn = 0,
-    pieceRow = 0,
-    tileColumn = 0,
-    tileRow = 0,
-    playerTurn = 1,
-    battleMode = false;
+function updateBoard() {
+    document.getElementById('board').innerHTML = ''; //clear div
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            const tile = document.createElement('div');
+            tile.classList.add('tile');
+            tile.id = i + "" + j;
+            if (i % 2 === 0)
+                j % 2 === 0 ? tile.classList.add('white') : tile.classList.add('black');
+            else
+                j % 2 === 0 ? tile.classList.add('black') : tile.classList.add('white');
+            if (board[i][j] !== 0) {
+                const piece = document.createElement('div');
+                piece.classList.add('piece');
+                board[i][j] === 1 ? piece.classList.add('player1') : piece.classList.add('player2');
+                tile.appendChild(piece).addEventListener('click', checkPiece);
+            }
+            document.querySelector('#board').appendChild(tile).addEventListener('click', movePossible);
+        }
+    }
+}
 
 function restart() {
     board = [
@@ -40,28 +52,6 @@ function restart() {
     currentPlayer();
     updateBoard();
 
-}
-
-function updateBoard() {
-    document.getElementById('board').innerHTML = ''; //clear div
-    for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
-            const tile = document.createElement('div');
-            tile.classList.add('tile');
-            tile.id = i + "" + j;
-            if (i % 2 === 0)
-                j % 2 === 0 ? tile.classList.add('white') : tile.classList.add('black');
-            else
-                j % 2 === 0 ? tile.classList.add('black') : tile.classList.add('white');
-            if (board[i][j] !== 0) {
-                const piece = document.createElement('div');
-                piece.classList.add('piece');
-                board[i][j] === 1 ? piece.classList.add('player1') : piece.classList.add('player2');
-                tile.appendChild(piece).addEventListener('click', checkPiece);
-            }
-            document.querySelector('#board').appendChild(tile).addEventListener('click', movePossible);
-        }
-    }
 }
 
 restart();
